@@ -7,14 +7,4 @@ export class Hero {
     constructor(id: number = 0) {
         this.id = id;
     }
-
-    copy(hero: Hero): Hero {
-        for (const k in hero) {
-            if (this[k]) {
-                this[k] = hero[k];
-            }
-        }
-        this.id = hero.id;
-        return this;
-    }
 }

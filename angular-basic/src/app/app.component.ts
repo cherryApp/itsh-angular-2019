@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Hero } from './model/hero';
+import { cloneDeep, findIndex } from 'lodash';
 
 @Component({
   selector: 'app-root',
@@ -38,14 +39,13 @@ export class AppComponent {
   }
 
   onSave(hero: Hero): void {
-    let selected: Hero = this.heroes.find( item => item.id === hero.id);
-    console.log(hero, selected);
-    selected = hero;
-    console.log(hero, selected);
+    const index = findIndex(this.heroes, {id: hero.id});
+    const test = cloneDeep(hero);
+    this.heroes.splice(index, 1, cloneDeep(hero));
   }
 
   onDelete(hero: Hero): void {
-    const index = this.heroes.indexOf(hero);
+    const index = findIndex(this.heroes, {id: hero.id});
     this.heroes.splice(index, 1);
     this.selectedHero = null;
   }
