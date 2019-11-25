@@ -36,4 +36,17 @@ export class AppComponent {
   onShow(hero: Hero): void {
     this.selectedHero = hero;
   }
+
+  onSave(hero: Hero): void {
+    let selected: Hero = this.heroes.find( item => item.id === hero.id);
+    console.log(hero, selected);
+    selected = hero;
+    console.log(hero, selected);
+  }
+
+  onDelete(hero: Hero): void {
+    const index = this.heroes.indexOf(hero);
+    this.heroes.splice(index, 1);
+    this.selectedHero = null;
+  }
 }

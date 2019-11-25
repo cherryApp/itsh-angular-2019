@@ -381,8 +381,12 @@
     </tbody>
   </table>
 
-  {{ selectedHero }}
-  {{ selectedHero | json }}
+  <app-hero-detail 
+    *ngIf="selectedHero" 
+    [hero]="selectedHero" 
+    (deleteHero)="onDelete($event)" 
+    (saveHero)="onSave($event)">
+  </app-hero-detail>
 
 
 

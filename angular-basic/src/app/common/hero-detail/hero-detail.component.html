@@ -1,0 +1,18 @@
+<div class="hero-row">
+    <form>
+        <label for="">ID</label>
+        {{ currentHero.id }}
+        <br>
+        <label for="">Name</label>
+        <input [value]="currentHero.name" (input)="currentHero.name = $event.target.value" type="text">
+        <br>
+        <label for="">Address</label>
+        <input [value]="currentHero.address" (input)="currentHero.address = $event.target.value" (input)="currentHero.address" (input)="currentHero.address = $event.target.value = $event.target.value" type="text">
+        <br>
+        <label for="">SuperPower</label>
+        <input [value]="currentHero.superPower" (input)="currentHero.superPower = $event.target.value" type="text">
+        <br>
+        <button type="button" (click)="onSaveHero(currentHero)">Save</button>
+        <button type="button" (click)="onDelete(currentHero)">Delete</button>
+    </form>
+</div>
