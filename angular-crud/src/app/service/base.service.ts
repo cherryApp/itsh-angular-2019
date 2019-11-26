@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BaseService {
+export abstract class BaseService {
 
   list: any[] = [
     {
@@ -108,8 +110,19 @@ export class BaseService {
   },
   ];
 
+  list$: BehaviorSubject<any> = new BehaviorSubject([]);
+
   apiUrl = 'http://localhost:3000/';
   endpoint = 'employee';
 
-  constructor() { }
+  constructor(
+    public http: HttpClient
+  ) { }
+
+  getAll(): void {
+      this.http.get(`${this.apiUrl}${this.endpoint}`).toPromise().then(
+          data => this.list$.next(data),
+          err => console.error(err)
+      );
+  }
 }

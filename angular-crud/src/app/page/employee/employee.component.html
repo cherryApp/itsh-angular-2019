@@ -1,4 +1,22 @@
-<table class="table table-striped">
+<div class="row">
+    <div class="col-4">
+        <input
+            [value]="phrase" 
+            (input)="phrase = $event.target.value" 
+            type="text" 
+            class="form-control" 
+            placeholder="filtering">
+    </div>
+    <div class="col-2">
+        <select [(ngModel)]="filterKey" class="form-control">
+            <option value="">any field</option>
+            <option *ngFor="let col of cols" [value]="col.key">
+                {{ col.title }}
+            </option>
+        </select>
+    </div>
+</div>
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th *ngFor="let col of cols">
@@ -7,9 +25,19 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of list">
+        <tr *ngFor="let row of list$ | async | filter:phrase:filterKey">
             <td *ngFor="let col of cols">
-                {{ row[col.key] }}
+                <div *ngIf="col.key !== 'phone'">
+                    {{ row[col.key] }}
+                </div>
+                <div appCallButton [ngbPopover]="popContent" popoverTitle="Call this" *ngIf="col.key === 'phone'">
+                    {{ row[col.key] }}
+                </div>
+                <ng-template #popContent>
+                    <a href="call: {{ row[col.key] }}" class="btn btn-success">
+                        {{ row[col.key] }}
+                    </a>
+                </ng-template>
             </td>
         </tr>
     </tbody>

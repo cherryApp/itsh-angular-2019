@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/service/employee.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-employee',
@@ -20,12 +21,17 @@ export class EmployeeComponent implements OnInit {
   ];
 
   list: any[] = this.employeeService.list;
+  list$: BehaviorSubject<any> = this.employeeService.list$;
+
+  phrase = '';
+  filterKey = '';
 
   constructor(
     private employeeService: EmployeeService,
   ) { }
 
   ngOnInit() {
+    this.employeeService.getAll();
   }
 
 }

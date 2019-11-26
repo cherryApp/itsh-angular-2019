@@ -31,7 +31,8 @@
               "node_modules/bootswatch/dist/darkly/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
