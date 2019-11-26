@@ -1,1 +1,16 @@
-{{ list | json }}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th *ngFor="let col of cols">
+                {{ col.title }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of list">
+            <td *ngFor="let col of cols">
+                {{ row[col.key] }}
+            </td>
+        </tr>
+    </tbody>
+</table>
