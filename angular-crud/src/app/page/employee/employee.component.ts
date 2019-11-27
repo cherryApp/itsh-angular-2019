@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { BehaviorSubject } from 'rxjs';
+import { Employee } from 'src/app/model/employee';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss']
+  styleUrls: ['./employee.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmployeeComponent implements OnInit {
 
@@ -28,7 +30,13 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-  ) { }
+    private changeDetectorRef: ChangeDetectorRef,
+  ) {
+    changeDetectorRef.detach();
+    setInterval(() => {
+      this.changeDetectorRef.detectChanges();
+    }, 1000);
+  }
 
   ngOnInit() {
     this.employeeService.getAll();

@@ -11,6 +11,7 @@ import { NavComponent } from './common/nav/nav.component';
 import { EmployeeComponent } from './page/employee/employee.component';
 import { FilterPipe } from './pipe/filter.pipe';
 import { CallButtonDirective } from './directive/call-button.directive';
+import { LazyForDirective } from './directive/lazyFor.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { CallButtonDirective } from './directive/call-button.directive';
     EmployeeComponent,
     FilterPipe,
     CallButtonDirective,
+    LazyForDirective,
   ],
   imports: [
     BrowserModule,

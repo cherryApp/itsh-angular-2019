@@ -1,8 +1,7 @@
 <div class="row">
     <div class="col-4">
         <input
-            [value]="phrase" 
-            (input)="phrase = $event.target.value" 
+            [(ngModel)]="phrase" 
             type="text" 
             class="form-control" 
             placeholder="filtering">
@@ -24,21 +23,23 @@
             </th>
         </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let row of list$ | async | filter:phrase:filterKey">
+    <tbody *ngIf="list$ | async; let items">
+        <tr *ngFor="let row of items | filter:phrase:filterKey; let i = index; trackBy: i">
             <td *ngFor="let col of cols">
-                <div *ngIf="col.key !== 'phone'">
-                    {{ row[col.key] }}
-                </div>
-                <div appCallButton [ngbPopover]="popContent" popoverTitle="Call this" *ngIf="col.key === 'phone'">
-                    {{ row[col.key] }}
-                </div>
-                <ng-template #popContent>
-                    <a href="call: {{ row[col.key] }}" class="btn btn-success">
-                        {{ row[col.key] }}
-                    </a>
-                </ng-template>
+                {{ row[col.key] }}
             </td>
         </tr>
     </tbody>
 </table>
+
+<!-- <div *ngIf="col.key !== 'phone'">
+    {{ row[col.key] }}
+</div>
+<div appCallButton [ngbPopover]="popContent" popoverTitle="Call this" *ngIf="col.key === 'phone'">
+    {{ row[col.key] }}
+</div>
+<ng-template #popContent>
+    <a href="call: {{ row[col.key] }}" class="btn btn-success">
+        {{ row[col.key] }}
+    </a>
+</ng-template> -->

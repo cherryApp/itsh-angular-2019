@@ -117,7 +117,7 @@ export abstract class BaseService {
 
   constructor(
     public http: HttpClient
-  ) { }
+  ) {}
 
   getAll(): void {
       this.http.get(`${this.apiUrl}${this.endpoint}`).toPromise().then(
