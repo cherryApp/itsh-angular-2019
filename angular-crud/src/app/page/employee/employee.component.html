@@ -21,12 +21,20 @@
             <th *ngFor="let col of cols">
                 {{ col.title }}
             </th>
+            <th>actions</th>
         </tr>
     </thead>
     <tbody *ngIf="list$ | async; let items">
         <tr *ngFor="let row of items | filter:phrase:filterKey; trackBy: trackFn">
             <td *ngFor="let col of cols">
                 {{ row[col.key] }}
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a [routerLink]="'/edit/'+row.id" class="btn btn-info">
+                        <i class="fa fa-retweet"></i>
+                    </a>
+                </div>
             </td>
         </tr>
     </tbody>

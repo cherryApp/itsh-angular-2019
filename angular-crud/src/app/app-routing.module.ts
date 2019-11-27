@@ -1,8 +1,28 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EmployeeComponent } from './page/employee/employee.component';
+import { EmployeeEditComponent } from './page/employee-edit/employee-edit.component';
+import { LoginComponent } from './page/login/login.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: EmployeeComponent
+  },
+  {
+    path: 'edit/:id',
+    component: EmployeeEditComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '**',
+    component: EmployeeComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

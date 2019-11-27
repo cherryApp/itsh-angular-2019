@@ -1,7 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { BehaviorSubject } from 'rxjs';
 import { Employee } from 'src/app/model/employee';
+import { Column } from 'src/app/model/column';
+import { ConfigService } from 'src/app/service/config.service';
 
 @Component({
   selector: 'app-employee',
@@ -9,21 +11,13 @@ import { Employee } from 'src/app/model/employee';
   styleUrls: ['./employee.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EmployeeComponent implements OnInit {
+export class EmployeeComponent implements OnInit, OnDestroy {
 
-  cols: {key: string, title: string}[] = [
-      {key: 'id', title: 'ID'},
-      {key: 'first_name', title: 'Fname'},
-      {key: 'last_name', title: 'Lname'},
-      {key: 'email', title: 'Email'},
-      {key: 'gender', title: 'Gender'},
-      {key: 'ip_address', title: 'IP'},
-      {key: 'address', title: 'Address'},
-      {key: 'phone', title: 'Phone'},
-  ];
+  cols: Column[] = this.config.cols.employee;
 
   list: any[] = this.employeeService.list;
   list$: BehaviorSubject<any> = this.employeeService.list$;
+  changeInterval: NodeJS.Timer;
 
   phrase = '';
   filterKey = '';
@@ -31,15 +25,20 @@ export class EmployeeComponent implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private changeDetectorRef: ChangeDetectorRef,
+    private config: ConfigService
   ) {
     changeDetectorRef.detach();
-    setInterval(() => {
+    this.changeInterval = setInterval(() => {
       this.changeDetectorRef.detectChanges();
     }, 1000);
   }
 
   ngOnInit() {
     this.employeeService.getAll();
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.changeInterval);
   }
 
   trackFn(index, item): number {

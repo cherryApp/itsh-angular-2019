@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -112,17 +113,29 @@ export abstract class BaseService {
 
   list$: BehaviorSubject<any> = new BehaviorSubject([]);
 
-  apiUrl = 'http://localhost:3000/';
-  endpoint = 'employee';
+  apiUrl = this.config.apiUrl;
+  endpoint = '';
 
   constructor(
-    public http: HttpClient
+    public http: HttpClient,
+    public config: ConfigService,
   ) {}
 
   getAll(): void {
       this.http.get(`${this.apiUrl}${this.endpoint}`).toPromise().then(
           data => this.list$.next(data),
           err => console.error(err)
+      );
+  }
+
+  get(id: number|string): Observable<any> {
+      return this.http.get(`${this.apiUrl}${this.endpoint}/${id}`);
+  }
+
+  create(entity: any): void {
+      this.http.post(`${this.apiUrl}${this.endpoint}`, entity).toPromise().then(
+          newObject => this.getAll(),
+          err => console.log(err)
       );
   }
 }
