@@ -42,4 +42,11 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.getAll();
   }
 
+  trackFn(index, item): number {
+    if (!item) {
+      return null;
+    }
+    return item.id;
+  }
+
 }
