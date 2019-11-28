@@ -3,6 +3,9 @@ import { EmployeeService } from 'src/app/service/employee.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { Employee } from 'src/app/model/employee';
+import { ConfigService } from 'src/app/service/config.service';
+import { Column } from 'src/app/model/column';
 
 @Component({
   selector: 'app-employee-edit',
@@ -11,13 +14,15 @@ import { Subscription } from 'rxjs';
 })
 export class EmployeeEditComponent implements OnInit, OnDestroy {
 
-  employee: any = null;
+  employee: Employee = null;
   sub: Subscription;
+  cols: Column[] = this.config.cols.employee;
 
   constructor(
     private employeeService: EmployeeService,
     private ar: ActivatedRoute,
-  ) {  }
+    private config: ConfigService,
+  ) { }
 
   ngOnInit() {
     this.sub = this.ar.params.pipe( switchMap(
@@ -30,6 +35,10 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  onSubmit(form): void {
+    console.log(form);
   }
 
 }

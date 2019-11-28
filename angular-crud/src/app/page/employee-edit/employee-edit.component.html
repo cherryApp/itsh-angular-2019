@@ -1,1 +1,20 @@
-{{ employee | json }}
+<div class="row" *ngIf="employee">
+    <div class="col-6 offset-3 col-sm-10 offset-sm-1">
+        <form #eForm="ngForm" (ngSubmit)="onSubmit(ngForm)" class="mb-4">
+            <div *ngFor="let col of cols" class="form-group">
+                <label for="">{{ col.title }}</label>
+                <div *ngIf="!col.noEditable" [ngSwitch]="col.type">
+                    <input [name]="col.key" [(ngModel)]="employee[col.key]" *ngSwitchCase="'number'" type="number" class="form-control">                    
+                    <input [name]="col.key" [(ngModel)]="employee[col.key]" *ngSwitchCase="'date'" type="date" class="form-control">                    
+                    <input email [name]="col.key" [(ngModel)]="employee[col.key]" *ngSwitchCase="'email'" type="email" class="form-control">   
+                    <input required [name]="col.key" [(ngModel)]="employee[col.key]" *ngSwitchDefault type="text" class="form-control">                    
+                </div>
+                <div *ngIf="col.noEditable">{{ employee[col.key] }}</div>                 
+            </div>
+            <button [disabled]="eForm.form.invalid" class="btn btn-primary btn-block disabled-send-button">
+                Save
+            </button>
+            {{ eForm.form.valid | json }}
+        </form>
+    </div>
+</div>

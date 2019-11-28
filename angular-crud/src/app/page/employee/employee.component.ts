@@ -16,8 +16,8 @@ export class EmployeeComponent implements OnInit, OnDestroy {
   cols: Column[] = this.config.cols.employee;
 
   list: any[] = this.employeeService.list;
-  list$: BehaviorSubject<any> = this.employeeService.list$;
-  changeInterval: NodeJS.Timer;
+  list$: BehaviorSubject<Employee[]> = this.employeeService.list$;
+  changeInterval: any;
 
   phrase = '';
   filterKey = '';

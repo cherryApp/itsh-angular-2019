@@ -13,10 +13,10 @@ export class ConfigService {
 
   cols: {[propname: string]: Column[]} = {
     employee: [
-      {key: 'id', title: 'ID'},
+      {key: 'id', title: 'ID', noEditable: true, type: 'number'},
       {key: 'first_name', title: 'Fname'},
       {key: 'last_name', title: 'Lname'},
-      {key: 'email', title: 'Email'},
+      {key: 'email', title: 'Email', type: 'email'},
       {key: 'gender', title: 'Gender'},
       {key: 'ip_address', title: 'IP'},
       {key: 'address', title: 'Address'},
