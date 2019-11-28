@@ -1,36 +1,6 @@
 {
   "employee": [
     {
-      "id": 1,
-      "first_name": "Logan",
-      "last_name": "Corsor",
-      "email": "lcorsor0@newyorker.com",
-      "gender": "Male",
-      "ip_address": "16.139.178.197",
-      "address": "75980 Brickson Park Center",
-      "phone": "+7 461 493 6488"
-    },
-    {
-      "id": 2,
-      "first_name": "Tony",
-      "last_name": "Stark",
-      "email": "sstainton1@wikispaces.com",
-      "gender": "Female",
-      "ip_address": "113.78.89.114",
-      "address": "6 Oak Way",
-      "phone": "+351 464 461 5177"
-    },
-    {
-      "id": 3,
-      "first_name": "Jeanie",
-      "last_name": "Jakuszewski",
-      "email": "jjakuszewski2@berkeley.edu",
-      "gender": "Female",
-      "ip_address": "232.124.88.87",
-      "address": "04610 Anthes Parkway",
-      "phone": "+7 775 387 5147"
-    },
-    {
       "id": 4,
       "first_name": "Leora",
       "last_name": "Hinkins",

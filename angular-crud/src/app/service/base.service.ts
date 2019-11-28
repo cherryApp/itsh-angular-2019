@@ -148,4 +148,11 @@ export abstract class BaseService {
         })
     );
   }
+
+  delete(entity: any): void {
+      this.http.delete(`${this.apiUrl}${this.endpoint}/${entity.id}`).toPromise().then(
+          () => this.getAll(),
+          err => alert('Delete has failed.')
+      );
+  }
 }

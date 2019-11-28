@@ -34,6 +34,9 @@
                     <a [routerLink]="'/employee/edit/'+row.id" class="btn btn-info">
                         <i class="fa fa-retweet"></i>
                     </a>
+                    <button (click)="onDelete(row)" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                    </button>
                 </div>
             </td>
         </tr>

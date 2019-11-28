@@ -41,6 +41,10 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     clearInterval(this.changeInterval);
   }
 
+  onDelete(employee: Employee): void {
+    this.employeeService.delete(employee);
+  }
+
   trackFn(index, item): number {
     if (!item) {
       return null;
