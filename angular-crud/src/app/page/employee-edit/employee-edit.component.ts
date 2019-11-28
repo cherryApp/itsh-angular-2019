@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EmployeeService } from 'src/app/service/employee.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Subscription, of } from 'rxjs';
 import { Employee } from 'src/app/model/employee';
@@ -23,6 +23,7 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
     private employeeService: EmployeeService,
     private ar: ActivatedRoute,
     private config: ConfigService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -46,9 +47,15 @@ export class EmployeeEditComponent implements OnInit, OnDestroy {
 
   onSubmit(form): void {
     if (!this.isNew) {
-      
+      this.employeeService.update(this.employee).toPromise().then(
+        () => this.router.navigateByUrl('/'),
+        err => alert('Update has failed.')
+      );
     } else {
-      this.employeeService.create(this.employee);
+      this.employeeService.create(this.employee).toPromise().then(
+        () => this.router.navigateByUrl('/'),
+        err => alert('Save has failed.')
+      );
     }
   }
 
