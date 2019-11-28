@@ -3,4 +3,5 @@ export class Column {
     title = '';
     type?: 'text'|'date'|'number'|'email' = 'text';
     noEditable?: boolean;
+    required?: boolean;
 }
