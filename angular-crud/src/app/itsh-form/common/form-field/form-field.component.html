@@ -5,11 +5,13 @@
             *ngSwitchCase="'input'" 
             [type]="field.type" 
             [formControlName]="field.key" 
-            [id]="field.key">
+            [id]="field.key" 
+            class="form-control">
         <select 
             *ngSwitchCase="'select'" 
             [formControlName]="field.key" 
-            [id]="field.key">
+            [id]="field.key" 
+            class="form-control">
                 <option *ngFor="let option of field.options" [value]="option.value">
                     {{ option.label }}
                 </option>
@@ -17,7 +19,8 @@
         <textarea 
             *ngSwitchCase="'textarea'" 
             [formControlName]="field.key" 
-            [id]="field.key">
+            [id]="field.key" 
+            class="form-control">
         </textarea>        
     </div>
     <div [hidden]="isValid" class="error-message">

@@ -1,7 +1,8 @@
 import { FieldBase } from './field-base';
 
 export class InputField extends FieldBase<string> {
-    controlType = 'input';
+    // tslint:disable-next-line: no-inferrable-types
+    controlType?: string = 'input';
     type: string;
 
     constructor(options: InputField) {

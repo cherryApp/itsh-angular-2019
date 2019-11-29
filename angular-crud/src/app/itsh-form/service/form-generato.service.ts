@@ -12,9 +12,11 @@ export class FormGeneratoService {
   toFormGroup(fieldList: FieldBase<any>[]): FormGroup {
     const group = {};
 
-    fieldList.forEach( item => {
-      group[item.key] = new FormControl(item.value, item.validators || []);
-    });
+    if (fieldList) {
+      fieldList.forEach( item => {
+        group[item.key] = new FormControl(item.value, item.validators || []);
+      });
+    }
 
     return new FormGroup(group);
   }

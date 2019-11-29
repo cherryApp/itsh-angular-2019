@@ -42,3 +42,6 @@ POST /login
 
 ### Generate a component for the specified module
 `ng g c -m itsh-form --selector=isth-form itsh-form/common/form`
+
+## Intercept http requests
+[jwt.interceptor.ts](https://github.com/cherryApp/tr360-ifsz/blob/master/client/src/app/helpers/jwt.interceptor.ts)
