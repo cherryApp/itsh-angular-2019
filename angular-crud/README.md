@@ -36,3 +36,9 @@ POST /login
   "password": "bestPassw0rd"
 }
 `
+
+## Generate module
+`ng g module isth-form`
+
+### Generate a component for the specified module
+`ng g c -m itsh-form --selector=isth-form itsh-form/common/form`
